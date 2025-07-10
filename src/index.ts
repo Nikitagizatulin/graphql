@@ -16,7 +16,7 @@ export interface Context {
 }
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({
+const server = new ApolloServer<Context>({
   typeDefs,
   resolvers: {
     Query,
@@ -32,7 +32,7 @@ const server = new ApolloServer({
 //  2. installs your ApolloServer instance as middleware
 //  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
-  context: async ({ req, res }): Promise<Context> => {
+  context: async ({ req }) => {
     const userInfo = req.headers.authorization
       ? getUserFromToken(req.headers.authorization)
       : null;
