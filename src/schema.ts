@@ -46,16 +46,11 @@ export const typeDefs = `#graphql
     user: User!
   }
 
-  type PostPayload {
-    userErrors: [UserError!]!
-    post: Post
-  }
-  type PostDeletePayload {
-    userErrors: [UserError!]!
-    postDeleted: Boolean!
-  }
   type UserError {
     message: String!
+  }
+  interface MutationResponse {
+    userErrors: [UserError!]!
   }
   input PostInput {
     title: String
@@ -64,8 +59,16 @@ export const typeDefs = `#graphql
   input PostFilter {
     title: String
   }
-  type AuthPayload {
+  type AuthPayload implements MutationResponse {
     userErrors: [UserError!]!
     token: String
+  }
+  type PostPayload implements MutationResponse {
+    userErrors: [UserError!]!
+    post: Post
+  }
+  type PostDeletePayload implements MutationResponse {
+    userErrors: [UserError!]!
+    postDeleted: Boolean!
   }
 `;
