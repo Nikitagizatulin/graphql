@@ -8,7 +8,7 @@ export const typeDefs = `#graphql
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    posts(filter: PostFilter): [Post!]
+    posts(filter: PostFilter): [Post!]!
     post(postId: ID!): Post
     me: User
     profile(userId: ID!): Profile
@@ -36,7 +36,7 @@ export const typeDefs = `#graphql
     id: ID!
     name: String!
     email: String!
-    posts: [Post!]
+    posts: [Post!]!
     profile: Profile
   }
 
@@ -47,11 +47,11 @@ export const typeDefs = `#graphql
   }
 
   type PostPayload {
-    userErrors: [UserError!]
+    userErrors: [UserError!]!
     post: Post
   }
   type PostDeletePayload {
-    userErrors: [UserError!]
+    userErrors: [UserError!]!
     postDeleted: Boolean!
   }
   type UserError {
@@ -65,7 +65,7 @@ export const typeDefs = `#graphql
     title: String
   }
   type AuthPayload {
-    userErrors: [UserError!]
+    userErrors: [UserError!]!
     token: String
   }
 `;
